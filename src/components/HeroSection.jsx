@@ -143,13 +143,13 @@ export const HeroSection = () => {
                 className="relative z-10 w-full h-full object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
               />
 
-              {/* BADGE dentro do container — sobrepõe a foto, canto superior direito */}
-              <div className="absolute top-3 right-3 z-20 bg-card/80 backdrop-blur-md border border-primary/30 rounded-xl px-3 py-1 shadow-lg">
-                <span className="text-sm font-semibold text-primary">
-                  2.5+ Years XP
-                </span>
-              </div>
+            </div>
 
+            {/* BADGE — fora do overflow-hidden, sobrepõe a foto como sticker */}
+            <div className="absolute top-4 right-0 translate-x-1/4 z-20 bg-card/80 backdrop-blur-md border border-primary/30 rounded-xl px-3 py-1 shadow-lg">
+              <span className="text-xs md:text-sm font-semibold text-primary">
+                2.5+ Years XP
+              </span>
             </div>
 
           </div>

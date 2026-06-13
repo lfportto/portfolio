@@ -11,7 +11,8 @@ export const HeroSection = () => {
     >
       <div className="container max-w-7xl mx-auto z-10">
 
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16">
+        {/* pt-24 no mobile garante espaço abaixo da Navbar; lg:pt-0 mantém desktop intacto */}
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16 pt-24 lg:pt-0">
 
           {/* ====================================== */}
           {/* TEXTO */}
@@ -19,14 +20,15 @@ export const HeroSection = () => {
 
           <div className="max-w-3xl text-center lg:text-left space-y-6">
 
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <h1 className="font-bold tracking-tight">
 
-              <span className="opacity-0 animate-fade-in">
+              {/* "Hi, I'm" — menor no mobile, tamanho normal no desktop */}
+              <span className="block text-2xl md:text-6xl opacity-0 animate-fade-in">
                 Hi, I'm
               </span>
 
-              <span className="text-primary opacity-0 animate-fade-in-delay-1">
-                {" "}
+              {/* Nome — tamanho atual em ambos, mas em linha própria no mobile */}
+              <span className="block text-4xl md:text-6xl text-primary opacity-0 animate-fade-in-delay-1">
                 Luis Felipe Porto
               </span>
 
@@ -46,55 +48,25 @@ export const HeroSection = () => {
             {/* BOTÕES */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
 
-              {/* VIEW PROJECTS */}
               <a
                 href="#projects"
-                className="cosmic-button
-                px-6 py-3
-                  rounded-full
-                  border
-                  border-primary/40
-                  hover:border-primary
-                  transition-all
-                  duration-300
-                "
+                className="cosmic-button px-6 py-3 rounded-full border border-primary/40 hover:border-primary transition-all duration-300"
               >
                 View Projects
               </a>
 
-              {/* CONTACT */}
               <a
                 href="#contact"
-                className="
-                  px-6 py-3
-                  rounded-full
-                  border
-                  border-primary/40
-                  hover:border-primary
-                  transition-all
-                  duration-300
-                "
+                className="px-6 py-3 rounded-full border border-primary/40 hover:border-primary transition-all duration-300"
               >
                 Contact Me
               </a>
 
-              {/* DOWNLOAD CV */}
               <a
                 href="https://drive.google.com/uc?export=download&id=1VQzidK1aXoq9Y8RUL-htAGWC7DFRWVZ9"
                 target="_blank"
                 rel="noreferrer"
-                className="
-                  px-6 py-3
-                  rounded-full
-                  border
-                  border-primary/40
-                  hover:border-primary
-                  transition-all
-                  duration-300
-                  flex
-                  items-center
-                  gap-2
-                "
+                className="px-6 py-3 rounded-full border border-primary/40 hover:border-primary transition-all duration-300 flex items-center gap-2"
               >
                 <Download size={18} />
                 Download CV
@@ -128,12 +100,12 @@ export const HeroSection = () => {
               style={{ animationDuration: "18s", animationDirection: "reverse" }}
             />
 
-            {/* CONTAINER circular — recorta tudo em círculo */}
+            {/* CONTAINER circular — w-64/h-64 no mobile, w-96/h-96 no desktop */}
             <div
-              className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/40"
+              className="relative w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/40"
               style={{ boxShadow: "0 0 50px rgba(139,92,246,0.45)" }}
             >
-              {/* FUNDO ANIMADO — gradiente radial pulsante */}
+              {/* FUNDO ANIMADO */}
               <div
                 className="absolute inset-0 rounded-full"
                 style={{
@@ -159,29 +131,16 @@ export const HeroSection = () => {
                 }}
               />
 
-              {/* FOTO PNG com fundo transparente */}
+              {/* FOTO PNG */}
               <img
                 src="/profile_pic_png.png"
                 alt="Luis Felipe Porto"
-                className="
-                  relative z-10
-                  w-full h-full
-                  object-cover
-                  object-top
-                  transition-transform duration-700 ease-out hover:scale-105
-                "
+                className="relative z-10 w-full h-full object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
               />
             </div>
 
             {/* BADGE EXPERIÊNCIA */}
-            <div
-              className="
-                absolute top-4 right-0 translate-x-1/4
-                bg-card/80 backdrop-blur-md
-                border border-primary/30
-                rounded-xl px-3 py-1 shadow-lg
-              "
-            >
+            <div className="absolute top-4 right-0 translate-x-1/4 bg-card/80 backdrop-blur-md border border-primary/30 rounded-xl px-3 py-1 shadow-lg">
               <span className="text-sm font-semibold text-primary">
                 2.5+ Years XP
               </span>
@@ -193,19 +152,13 @@ export const HeroSection = () => {
 
       </div>
 
-      {/* ====================================== */}
       {/* SCROLL INDICATOR */}
-      {/* ====================================== */}
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
         <span className="text-sm text-muted-foreground mb-2">Scroll</span>
         <ArrowDown className="h-5 w-5 text-primary" />
       </div>
 
-      {/* ====================================== */}
       {/* KEYFRAMES */}
-      {/* ====================================== */}
-
       <style>{`
         @keyframes heroBgPulse {
           0%, 100% {

@@ -2,6 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <script>
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+    </script>
+
     <link rel="icon" type="image/png" href="/portfolio_website_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luis Felipe Porto | Data Analyst Portfolio</title>

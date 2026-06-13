@@ -1,69 +1,229 @@
-import { ArrowDown } from "lucide-react";
+import {
+  ArrowDown,
+  Download,
+} from "lucide-react";
 
 export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4"
+      className="relative min-h-screen flex items-center justify-center px-4"
     >
-      <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="space-y-6">
+      <div className="container max-w-7xl mx-auto z-10">
 
-          {/* Nome principal exibido na página */}
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16">
 
-            {/* Texto inicial */}
-            <span className="opacity-0 animate-fade-in">
-              Hi, I'm
-            </span>
+          {/* ====================================== */}
+          {/* TEXTO */}
+          {/* ====================================== */}
 
-            {/* Primeiro nome */}
-            <span className="text-primary opacity-0 animate-fade-in-delay-1">
-              {" "}
-              Luis Felipe
-            </span>
+          <div className="max-w-3xl text-center lg:text-left space-y-6">
 
-            {/* Sobrenome */}
-            <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-              {" "}
-              Porto
-            </span>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
 
-          </h1>
+              <span className="opacity-0 animate-fade-in">
+                Hi, I'm
+              </span>
 
-          {/* Cargo / posicionamento profissional */}
-          <h2 className="text-xl md:text-3xl font-semibold opacity-0 animate-fade-in-delay-3">
-            Data Analyst | BI | Data Engineering
-          </h2>
+              <span className="text-primary opacity-0 animate-fade-in-delay-1">
+                {" "}
+                Luis Felipe Porto
+              </span>
 
-          {/* Breve resumo profissional */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto opacity-0 animate-fade-in-delay-4">
-            Building end-to-end data solutions through analytics,
-            automation and business intelligence. Passionate about
-            transforming data into actionable insights and scalable
-            solutions.
-          </p>
+            </h1>
 
-          {/* Botão que leva até a seção de projetos */}
-          <div className="pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className="cosmic-button">
-              View My Projects
-            </a>
+            <h2 className="text-xl md:text-3xl font-semibold opacity-0 animate-fade-in-delay-3">
+              Data Analyst | BI | Data Engineering
+            </h2>
+
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl opacity-0 animate-fade-in-delay-4">
+              Building end-to-end data solutions through analytics,
+              automation and business intelligence. Passionate about
+              transforming data into actionable insights and scalable
+              solutions.
+            </p>
+
+            {/* BOTÕES */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
+
+              {/* VIEW PROJECTS */}
+              <a
+                href="#projects"
+                className="cosmic-button
+                px-6 py-3
+                  rounded-full
+                  border
+                  border-primary/40
+                  hover:border-primary
+                  transition-all
+                  duration-300
+                "
+              >
+                View Projects
+              </a>
+
+              {/* CONTACT */}
+              <a
+                href="#contact"
+                className="
+                  px-6 py-3
+                  rounded-full
+                  border
+                  border-primary/40
+                  hover:border-primary
+                  transition-all
+                  duration-300
+                "
+              >
+                Contact Me
+              </a>
+
+              {/* DOWNLOAD CV */}
+              <a
+                href="https://drive.google.com/uc?export=download&id=1VQzidK1aXoq9Y8RUL-htAGWC7DFRWVZ9"
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  px-6 py-3
+                  rounded-full
+                  border
+                  border-primary/40
+                  hover:border-primary
+                  transition-all
+                  duration-300
+                  flex
+                  items-center
+                  gap-2
+                "
+              >
+                <Download size={18} />
+                Download CV
+              </a>
+
+            </div>
+
+          </div>
+
+          {/* ====================================== */}
+          {/* FOTO */}
+          {/* ====================================== */}
+
+          <div className="relative opacity-0 animate-fade-in-delay-4">
+
+            {/* GLOW externo */}
+            <div
+              className="absolute inset-0 rounded-full blur-3xl scale-110"
+              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)" }}
+            />
+
+            {/* ANEL GIRANDO 1 */}
+            <div
+              className="absolute -inset-4 rounded-full border-2 border-dashed border-primary/30 animate-spin"
+              style={{ animationDuration: "12s" }}
+            />
+
+            {/* ANEL GIRANDO 2 */}
+            <div
+              className="absolute -inset-8 rounded-full border border-primary/10 animate-spin"
+              style={{ animationDuration: "18s", animationDirection: "reverse" }}
+            />
+
+            {/* CONTAINER circular — recorta tudo em círculo */}
+            <div
+              className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/40"
+              style={{ boxShadow: "0 0 50px rgba(139,92,246,0.45)" }}
+            >
+              {/* FUNDO ANIMADO — gradiente radial pulsante */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `radial-gradient(circle at 50% 55%, #5c7aff 0%, #2e3fa3 25%, #222B62 55%, #0d1230 100%)`,
+                  animation: "heroBgPulse 5s ease-in-out infinite",
+                }}
+              />
+
+              {/* CAMADA de brilho rotativo */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `conic-gradient(from 0deg, transparent 50%, rgba(139,92,246,0.55) 68%, rgba(100,140,255,0.35) 75%, transparent 88%)`,
+                  animation: "heroBgRotate 6s linear infinite",
+                }}
+              />
+
+              {/* CAMADA de reflexo fixo no topo */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `radial-gradient(circle at 50% 10%, rgba(180,200,255,0.18) 0%, transparent 55%)`,
+                }}
+              />
+
+              {/* FOTO PNG com fundo transparente */}
+              <img
+                src="/profile_pic_png.png"
+                alt="Luis Felipe Porto"
+                className="
+                  relative z-10
+                  w-full h-full
+                  object-cover
+                  object-top
+                  transition-transform duration-700 ease-out hover:scale-105
+                "
+              />
+            </div>
+
+            {/* BADGE EXPERIÊNCIA */}
+            <div
+              className="
+                absolute top-4 right-0 translate-x-1/4
+                bg-card/80 backdrop-blur-md
+                border border-primary/30
+                rounded-xl px-3 py-1 shadow-lg
+              "
+            >
+              <span className="text-sm font-semibold text-primary">
+                2.5+ Years XP
+              </span>
+            </div>
+
           </div>
 
         </div>
+
       </div>
 
-      {/* Indicador para rolar a página */}
+      {/* ====================================== */}
+      {/* SCROLL INDICATOR */}
+      {/* ====================================== */}
+
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-
-        <span className="text-sm text-muted-foreground mb-2">
-          Scroll
-        </span>
-
+        <span className="text-sm text-muted-foreground mb-2">Scroll</span>
         <ArrowDown className="h-5 w-5 text-primary" />
-
       </div>
+
+      {/* ====================================== */}
+      {/* KEYFRAMES */}
+      {/* ====================================== */}
+
+      <style>{`
+        @keyframes heroBgPulse {
+          0%, 100% {
+            background: radial-gradient(circle at 50% 55%, #5c7aff 0%, #2e3fa3 25%, #222B62 55%, #0d1230 100%);
+            opacity: 1;
+          }
+          50% {
+            background: radial-gradient(circle at 50% 50%, #7b9aff 0%, #3a52cc 20%, #1e2d80 50%, #080e22 100%);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes heroBgRotate {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+      `}</style>
+
     </section>
   );
 };

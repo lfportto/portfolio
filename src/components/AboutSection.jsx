@@ -1,5 +1,6 @@
-import { Briefcase } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
+/* Animação de entrada */
 
 const AnimatedCard = ({ children, delay = 0 }) => {
   const cardRef = useRef(null);
@@ -44,296 +45,280 @@ const AnimatedCard = ({ children, delay = 0 }) => {
   );
 };
 
-export const AboutSection = () => {
-  const timelineRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+/* Contador animado */
+
+const AnimatedCounter = ({ end, suffix = "" }) => {
+  const counterRef = useRef(null);
+
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!timelineRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
 
-      const rect = timelineRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalHeight = rect.height;
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
 
-      const visibleHeight = Math.min(
-        totalHeight,
-        Math.max(0, windowHeight - rect.top)
-      );
-
-      const percentage = (visibleHeight / totalHeight) * 100;
-
-      setProgress(Math.min(100, percentage));
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!started) return;
+
+    let start = 0;
+
+    const duration = 1500;
+    const increment = end / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += increment;
+
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [started, end]);
+
   return (
-    <section id="about" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
+    <span ref={counterRef}>
+      {Number.isInteger(end)
+        ? Math.floor(count)
+        : count.toFixed(1)}
+      {suffix}
+    </span>
+  );
+};
 
-        {/* Título */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-          Professional <span className="text-primary">Journey</span>
+export const AboutSection = () => {
+  return (
+  <section id="about" className="py-24 px-4 relative">
+    <div className="container mx-auto max-w-7xl">
+
+      {/* Título */}
+
+      <AnimatedCard>
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
+          About <span className="text-primary">Me</span>
         </h2>
+      </AnimatedCard>
 
-        {/* Introdução */}
-        <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-          My professional journey started in manufacturing operations and
-          gradually evolved toward process improvement, analytics, automation
-          and data engineering. This background allows me to combine business
-          understanding with technical problem-solving to build impactful data
-          solutions.
-        </p>
+      {/* Conteúdo */}
 
-        {/* Timeline */}
-        <div ref={timelineRef} className="relative">
+      <div className="flex flex-col lg:flex-row gap-16 items-start">
 
-          {/* Linha base */}
-          <div className="absolute left-40 top-0 bottom-0 w-0.5 bg-primary/20 z-0"></div>
+        {/* Texto */}
 
-          {/* Linha animada */}
-          <div
-            className="absolute left-[159px] top-0 w-1 rounded-full z-0 transition-all duration-300"
-            style={{
-              height: `${progress}%`,
-              background:
-                "linear-gradient(to bottom, #ffffff, #c4b5fd)",
-              boxShadow:
-                "0 0 20px rgba(255,255,255,0.8)",
-            }}
-          />
+        <AnimatedCard delay={150}>
+          <div className="flex-1 max-w-4xl">
 
-          {/* Bolinha luminosa */}
-          <div
-            className="absolute left-40 w-4 h-4 rounded-full bg-white z-20 animate-pulse"
-            style={{
-              top: `${progress}%`,
-              transform: "translate(-50%, -50%)",
-              boxShadow:
-                "0 0 25px rgba(255,255,255,1)",
-            }}
-          />
+            <p className="text-gray-400 text-sm md:text-[16px] leading-relaxed text-left">
 
-          {/* ========================================= */}
-          {/* EXPERIÊNCIA 1 */}
-          {/* ========================================= */}
-          <div className="relative pl-56 pb-16">
+              I'm a Data Analyst and Business Intelligence enthusiast based in
+              São José dos Campos, São Paulo, Brazil.
 
-            {/* Data */}
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                May 2024
-              </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Dec 2025
-              </span>
-            </div>
+              <br /><br />
 
-            {/* Ícone */}
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
-            </div>
+              Currently in the final semester of my degree in Industrial
+              Production Management at Fatec, I combine a strong operations and
+              process-improvement background with data analytics, automation and
+              business intelligence. This multidisciplinary perspective allows
+              me to understand both the business side and the technical side of
+              data projects, helping transform operational challenges into
+              actionable insights.
 
-            {/* Card */}
-            <AnimatedCard delay={0}>
-        <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
+              <br /><br />
 
-              <h3 className="text-xl font-semibold">
-                Data Analyst Intern
-              </h3>
+              My journey started in manufacturing and operations environments,
+              where I developed a solid understanding of production processes,
+              supply chains and performance indicators. Over time, this
+              naturally evolved into a passion for data, leading me to work
+              with analytics, dashboard development, process automation and
+              data engineering solutions.
 
-              <p className="text-primary font-medium">
-                Ericsson
-              </p>
+              <br /><br />
 
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Developed dashboards, automated workflows and data
-                  pipelines for global operational teams.
-                </li>
+              Beyond professional experience, I continuously build personal
+              projects focused on analytics, BI and automation, exploring
+              end-to-end solutions involving Power BI, SQL, Python, ETL
+              processes and cloud technologies.
 
-                <li>
-                  • Worked with Power BI, SQL, Python and Power Automate
-                  to improve data quality and decision-making processes.
-                </li>
+              <br /><br />
 
-                <li>
-                  • Reduced analysis time by up to <strong>97%</strong>
-                  through automation and large-scale data validation
-                  solutions.
-                </li>
-              </ul>
+              I also had the opportunity to collaborate with international
+              teams in a global environment, communicating daily in English with
+              professionals from different countries and cultures. This
+              experience strengthened both my technical communication and my
+              ability to present complex information clearly to diverse
+              audiences.
 
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power BI
-                </span>
+              <br /><br />
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  SQL
-                </span>
+              Today, my main focus is leveraging data to improve
+              decision-making, optimize processes and create scalable solutions
+              that generate real business value.
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Python
-                </span>
+            </p>
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power Automate
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Jira
-                </span>
-              </div>
-
-            </div>
-          </AnimatedCard>
           </div>
+        </AnimatedCard>
 
-          {/* ========================================= */}
-          {/* EXPERIÊNCIA 2 */}
-          {/* ========================================= */}
-          <div className="relative pl-56 pb-16">
+        {/* Métricas */}
 
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                Aug 2023
+        <div className="flex flex-col gap-5 shrink-0 w-[180px]">
+
+          <AnimatedCard delay={250}>
+            <div className="
+                w-32 h-32
+                rounded-full
+                border border-primary/30
+                bg-card/60
+                backdrop-blur-md
+                flex flex-col
+                items-center
+                justify-center
+                mx-auto
+
+                transition-all
+                duration-500
+
+                hover:scale-110
+                hover:border-primary/70
+
+                shadow-[0_0_25px_rgba(139,92,246,0.12)]
+                hover:shadow-[0_0_45px_rgba(139,92,246,0.35)]
+                ">
+
+              <span className="text-3xl font-bold text-primary">
+                <AnimatedCounter end={2.5} suffix="+" />
               </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Apr 2024
+
+              <span className="text-xs text-center mt-1 text-muted-foreground px-3">
+                Years of Experience
               </span>
-            </div>
-
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
-            </div>
-
-            <AnimatedCard delay={200}>
-  <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
-
-              <h3 className="text-xl font-semibold">
-                Process Engineering Intern
-              </h3>
-
-              <p className="text-primary font-medium">
-                Suzano
-              </p>
-
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Monitored operational and quality KPIs to support
-                  process improvement initiatives.
-                </li>
-
-                <li>
-                  • Developed dashboards and automated reports using
-                  Excel, VBA and Power BI.
-                </li>
-
-                <li>
-                  • Reduced daily analysis time by up to <strong>93%</strong>
-                  through process automation and reporting improvements.
-                </li>
-              </ul>
-
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Excel
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  VBA
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power BI
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  SAP
-                </span>
-              </div>
 
             </div>
           </AnimatedCard>
 
-            </div>
+          <AnimatedCard delay={350}>
+            <div className="
+                w-32 h-32
+                rounded-full
+                border border-primary/30
+                bg-card/60
+                backdrop-blur-md
+                flex flex-col
+                items-center
+                justify-center
+                mx-auto
 
-          {/* ========================================= */}
-          {/* EXPERIÊNCIA 3 */}
-          {/* ========================================= */}
-          <div className="relative pl-56">
+                transition-all
+                duration-500
 
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                Feb 2021
+                hover:scale-110
+                hover:border-primary/70
+
+                shadow-[0_0_25px_rgba(139,92,246,0.12)]
+                hover:shadow-[0_0_45px_rgba(139,92,246,0.35)]
+                ">
+
+              <span className="text-3xl font-bold text-primary">
+                <AnimatedCounter end={5} />
               </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Dec 2022
+
+              <span className="text-xs text-center mt-1 text-muted-foreground px-3">
+                Personal Projects
               </span>
-            </div>
-
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
-            </div>
-
-            <AnimatedCard delay={400}>
-  <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
-
-              <h3 className="text-xl font-semibold">
-                Production Apprentice
-              </h3>
-
-              <p className="text-primary font-medium">
-                Ericsson
-              </p>
-
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Supported manufacturing, logistics and production
-                  operations in an electronics manufacturing environment.
-                </li>
-
-                <li>
-                  • Worked across inventory management, production support
-                  and machine operation activities.
-                </li>
-
-                <li>
-                  • Developed a strong understanding of industrial
-                  processes, operational workflows and continuous
-                  improvement.
-                </li>
-              </ul>
-
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Manufacturing
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Logistics
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Operations
-                </span>
-              </div>
 
             </div>
           </AnimatedCard>
-          </div>
+
+          <AnimatedCard delay={450}>
+            <div className="
+                w-32 h-32
+                rounded-full
+                border border-primary/30
+                bg-card/60
+                backdrop-blur-md
+                flex flex-col
+                items-center
+                justify-center
+                mx-auto
+
+                transition-all
+                duration-500
+
+                hover:scale-110
+                hover:border-primary/70
+
+                shadow-[0_0_25px_rgba(139,92,246,0.12)]
+                hover:shadow-[0_0_45px_rgba(139,92,246,0.35)]
+                ">
+
+              <span className="text-3xl font-bold text-primary">
+                <AnimatedCounter end={15} suffix="+" />
+              </span>
+
+              <span className="text-xs text-center mt-1 text-muted-foreground px-3">
+                Technologies
+              </span>
+
+            </div>
+          </AnimatedCard>
+
+          <AnimatedCard delay={550}>
+            <div className="
+                w-32 h-32
+                rounded-full
+                border border-primary/30
+                bg-card/60
+                backdrop-blur-md
+                flex flex-col
+                items-center
+                justify-center
+                mx-auto
+
+                transition-all
+                duration-500
+
+                hover:scale-110
+                hover:border-primary/70
+
+                shadow-[0_0_25px_rgba(139,92,246,0.12)]
+                hover:shadow-[0_0_45px_rgba(139,92,246,0.35)]
+                ">
+
+              <span className="text-3xl font-bold text-primary">
+                C1
+              </span>
+
+              <span className="text-xs text-center mt-1 text-muted-foreground px-3">
+                English Proficiency
+              </span>
+
+            </div>
+          </AnimatedCard>
+
         </div>
+
       </div>
-    </section>
+
+    </div>
+  </section>
   );
 };

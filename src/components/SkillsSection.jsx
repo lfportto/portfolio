@@ -1,106 +1,302 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+import {
+  SiPython,
+  SiPostgresql,
+  SiMysql,
+  SiPandas,
+  SiNumpy,
+  SiPlotly,
+  SiGit,
+  SiFigma,
+  SiJira,
+} from "react-icons/si";
+
+import {
+  Database,
+  BarChart3,
+  Workflow,
+  GitBranch,
+  FileSpreadsheet,
+  Cpu,
+  Network,
+} from "lucide-react";
+
+/* ===================================== */
+/* ANIMAÇÃO DE ENTRADA DOS CARDS */
+/* ===================================== */
+
+const AnimatedCard = ({ children, delay = 0 }) => {
+  const cardRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={cardRef}
+      style={{
+        transitionDelay: `${delay}ms`,
+      }}
+      className={`
+        transition-all duration-1000 ease-out
+        ${
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-8"
+        }
+      `}
+    >
+      {children}
+    </div>
+  );
+};
+
+/* ===================================== */
+/* SKILLS */
+/* ===================================== */
+
 const skills = [
-// Business Intelligence
-{ name: "Power BI", category: "business intelligence" },
-{ name: "DAX", category: "business intelligence" },
-{ name: "Power Query", category: "business intelligence" },
-{ name: "M Language", category: "business intelligence" },
+  // Business Intelligence
+  {
+    name: "Power BI",
+    category: "business intelligence",
+    icon: BarChart3,
+  },
+  {
+    name: "DAX",
+    category: "business intelligence",
+    icon: BarChart3,
+  },
+  {
+    name: "Power Query",
+    category: "business intelligence",
+    icon: Workflow,
+  },
+  {
+    name: "M Language",
+    category: "business intelligence",
+    icon: Cpu,
+  },
 
-// Data & Analytics
-{ name: "Python", category: "data & analytics" },
-{ name: "SQL", category: "data & analytics" },
-{ name: "Pandas", category: "data & analytics" },
-{ name: "NumPy", category: "data & analytics" },
-{ name: "Plotly", category: "data & analytics" },
-{ name: "Matplotlib", category: "data & analytics" },
+  // Data & Analytics
+  {
+    name: "Python",
+    category: "data & analytics",
+    icon: SiPython,
+  },
+  {
+    name: "SQL",
+    category: "data & analytics",
+    icon: Database,
+  },
+  {
+    name: "Pandas",
+    category: "data & analytics",
+    icon: SiPandas,
+  },
+  {
+    name: "NumPy",
+    category: "data & analytics",
+    icon: SiNumpy,
+  },
+  {
+    name: "Plotly",
+    category: "data & analytics",
+    icon: SiPlotly,
+  },
+  {
+    name: "Matplotlib",
+    category: "data & analytics",
+    icon: BarChart3,
+  },
 
-// Data Engineering
-{ name: "PostgreSQL", category: "data engineering" },
-{ name: "MySQL", category: "data engineering" },
-{ name: "ETL/ELT", category: "data engineering" },
-{ name: "REST APIs", category: "data engineering" },
-{ name: "Data Pipelines", category: "data engineering" },
-{ name: "Star Schema", category: "data engineering" },
+  // Data Engineering
+  {
+    name: "PostgreSQL",
+    category: "data engineering",
+    icon: SiPostgresql,
+  },
+  {
+    name: "MySQL",
+    category: "data engineering",
+    icon: SiMysql,
+  },
+  {
+    name: "ETL/ELT",
+    category: "data engineering",
+    icon: Workflow,
+  },
+  {
+    name: "REST APIs",
+    category: "data engineering",
+    icon: Network,
+  },
+  {
+    name: "Data Pipelines",
+    category: "data engineering",
+    icon: Workflow,
+  },
+  {
+    name: "Star Schema",
+    category: "data engineering",
+    icon: Database,
+  },
 
-// Tools & Automation
-{ name: "Excel", category: "tools & automation" },
-{ name: "VBA", category: "tools & automation" },
-{ name: "Git", category: "tools & automation" },
-{ name: "GitHub Actions", category: "tools & automation" },
-{ name: "Power Automate", category: "tools & automation" },
-{ name: "Prefect", category: "tools & automation" },
-{ name: "Jira", category: "tools & automation" },
-{ name: "Figma", category: "tools & automation" },
+  // Tools & Automation
+  {
+    name: "Excel",
+    category: "tools & automation",
+    icon: FileSpreadsheet,
+  },
+  {
+    name: "VBA",
+    category: "tools & automation",
+    icon: Cpu,
+  },
+  {
+    name: "Git",
+    category: "tools & automation",
+    icon: SiGit,
+  },
+  {
+    name: "GitHub Actions",
+    category: "tools & automation",
+    icon: GitBranch,
+  },
+  {
+    name: "Power Automate",
+    category: "tools & automation",
+    icon: Workflow,
+  },
+  {
+    name: "Prefect",
+    category: "tools & automation",
+    icon: GitBranch,
+  },
+  {
+    name: "Jira",
+    category: "tools & automation",
+    icon: SiJira,
+  },
+  {
+    name: "Figma",
+    category: "tools & automation",
+    icon: SiFigma,
+  },
 ];
 
-// Categorias para os filtros
+/* ===================================== */
+/* CATEGORIAS */
+/* ===================================== */
+
 const categories = [
-"all",
-"business intelligence",
-"data & analytics",
-"data engineering",
-"tools & automation",
+  "all",
+  "business intelligence",
+  "data & analytics",
+  "data engineering",
+  "tools & automation",
 ];
 
 export const SkillsSection = () => {
-const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("all");
 
-// Filtra as skills conforme a categoria selecionada
-const filteredSkills = skills.filter(
-(skill) =>
-activeCategory === "all" || skill.category === activeCategory
-);
+  const filteredSkills = skills.filter(
+    (skill) =>
+      activeCategory === "all" ||
+      skill.category === activeCategory
+  );
 
-return ( <section
-   id="skills"
-   className="py-24 px-4 relative bg-secondary/30"
- > <div className="container mx-auto max-w-5xl">
+  return (
+    <section
+      id="skills"
+      className="py-24 px-4 relative bg-secondary/30"
+    >
+      <div className="container mx-auto max-w-6xl">
 
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          Technical <span className="text-primary">Skills</span>
+        </h2>
 
-    {/* Título da seção */}
-    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-      Technical <span className="text-primary">Skills</span>
-    </h2>
-
-    {/* Botões de filtro */}
-    <div className="flex flex-wrap justify-center gap-4 mb-12">
-      {categories.map((category, key) => (
-        <button
-          key={key}
-          onClick={() => setActiveCategory(category)}
-          className={cn(
-            "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-            activeCategory === category
-              ? "bg-primary text-primary-foreground"
-              : "bg-secondary/70 text-foreground hover:bg-secondary"
-          )}
-        >
-          {category}
-        </button>
-      ))}
-    </div>
-
-    {/* Cards das habilidades */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-
-      {filteredSkills.map((skill, key) => (
-        <div
-          key={key}
-          className="bg-card p-4 rounded-lg shadow-xs card-hover flex items-center justify-center"
-        >
-          {/* Nome da habilidade */}
-          <h3 className="font-medium text-center">
-            {skill.name}
-          </h3>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((category, key) => (
+            <button
+              key={key}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                activeCategory === category
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary/70 text-foreground hover:bg-secondary"
+              )}
+            >
+              {category}
+            </button>
+          ))}
         </div>
-      ))}
 
-    </div>
-  </div>
-</section>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {filteredSkills.map((skill, index) => {
+            const Icon = skill.icon;
 
+            return (
+              <AnimatedCard
+                key={skill.name}
+                delay={index * 50}
+              >
+                <div
+                  className="
+                    rounded-xl
+                    border border-primary/20
+                    bg-card/60
+                    backdrop-blur-md
+                    p-5
+                    h-28
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-3
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:border-primary/50
+                    hover:shadow-[0_0_25px_rgba(139,92,246,0.25)]
+                  "
+                >
+                  <Icon
+                    size={24}
+                    className="text-primary"
+                  />
 
-);
+                  <h3 className="font-medium text-center text-sm">
+                    {skill.name}
+                  </h3>
+                </div>
+              </AnimatedCard>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+  );
 };

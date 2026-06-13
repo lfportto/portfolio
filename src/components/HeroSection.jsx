@@ -1,7 +1,4 @@
-import {
-  ArrowDown,
-  Download,
-} from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 
 export const HeroSection = () => {
   return (
@@ -11,7 +8,6 @@ export const HeroSection = () => {
     >
       <div className="container max-w-7xl mx-auto z-10">
 
-        {/* pt-24 no mobile garante espaço abaixo da Navbar; lg:pt-0 mantém desktop intacto */}
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-16 pt-24 lg:pt-0">
 
           {/* ====================================== */}
@@ -22,14 +18,14 @@ export const HeroSection = () => {
 
             <h1 className="font-bold tracking-tight">
 
-              {/* "Hi, I'm" — menor no mobile, tamanho normal no desktop */}
-              <span className="block text-2xl md:text-6xl opacity-0 animate-fade-in">
+              {/* Mobile: "Hi, I'm" em linha menor separada / Desktop: inline normal */}
+              <span className="block text-2xl lg:inline lg:text-6xl opacity-0 animate-fade-in">
                 Hi, I'm
               </span>
 
-              {/* Nome — tamanho atual em ambos, mas em linha própria no mobile */}
-              <span className="block text-4xl md:text-6xl text-primary opacity-0 animate-fade-in-delay-1">
-                Luis Felipe Porto
+              {/* Mobile: nome em linha própria / Desktop: continua na mesma linha */}
+              <span className="block text-4xl lg:inline lg:text-6xl text-primary opacity-0 animate-fade-in-delay-1">
+                <span className="lg:hidden"> </span>Luis Felipe Porto
               </span>
 
             </h1>
@@ -38,15 +34,24 @@ export const HeroSection = () => {
               Data Analyst | BI | Data Engineering
             </h2>
 
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl opacity-0 animate-fade-in-delay-4">
-              Building end-to-end data solutions through analytics,
-              automation and business intelligence. Passionate about
-              transforming data into actionable insights and scalable
-              solutions.
-            </p>
+            {/* Parágrafo — fonte reduzida + Scroll indicator mobile logo abaixo */}
+            <div className="opacity-0 animate-fade-in-delay-4">
+              <p className="text-base md:text-lg text-gray-400 max-w-2xl">
+                Building end-to-end data solutions through analytics,
+                automation and business intelligence. Passionate about
+                transforming data into actionable insights and scalable
+                solutions.
+              </p>
+
+              {/* SCROLL INDICATOR — visível só no mobile, logo abaixo do parágrafo */}
+              <div className="flex lg:hidden flex-col items-center mt-5 animate-bounce">
+                <span className="text-sm text-muted-foreground mb-1">Scroll</span>
+                <ArrowDown className="h-5 w-5 text-primary" />
+              </div>
+            </div>
 
             {/* BOTÕES */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 opacity-0 animate-fade-in-delay-4">
 
               <a
                 href="#projects"
@@ -100,7 +105,7 @@ export const HeroSection = () => {
               style={{ animationDuration: "18s", animationDirection: "reverse" }}
             />
 
-            {/* CONTAINER circular — w-64/h-64 no mobile, w-96/h-96 no desktop */}
+            {/* CONTAINER circular */}
             <div
               className="relative w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/40"
               style={{ boxShadow: "0 0 50px rgba(139,92,246,0.45)" }}
@@ -137,13 +142,14 @@ export const HeroSection = () => {
                 alt="Luis Felipe Porto"
                 className="relative z-10 w-full h-full object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
               />
-            </div>
 
-            {/* BADGE EXPERIÊNCIA */}
-            <div className="absolute top-4 right-0 translate-x-1/4 bg-card/80 backdrop-blur-md border border-primary/30 rounded-xl px-3 py-1 shadow-lg">
-              <span className="text-sm font-semibold text-primary">
-                2.5+ Years XP
-              </span>
+              {/* BADGE dentro do container — sobrepõe a foto, canto superior direito */}
+              <div className="absolute top-3 right-3 z-20 bg-card/80 backdrop-blur-md border border-primary/30 rounded-xl px-3 py-1 shadow-lg">
+                <span className="text-sm font-semibold text-primary">
+                  2.5+ Years XP
+                </span>
+              </div>
+
             </div>
 
           </div>
@@ -152,8 +158,8 @@ export const HeroSection = () => {
 
       </div>
 
-      {/* SCROLL INDICATOR */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+      {/* SCROLL INDICATOR — visível só no desktop, posição absoluta original */}
+      <div className="hidden lg:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center animate-bounce">
         <span className="text-sm text-muted-foreground mb-2">Scroll</span>
         <ArrowDown className="h-5 w-5 text-primary" />
       </div>

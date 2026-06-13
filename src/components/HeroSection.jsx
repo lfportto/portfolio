@@ -25,7 +25,7 @@ export const HeroSection = () => {
 
               {/* Mobile: nome em linha própria / Desktop: continua na mesma linha */}
               <span className="block text-4xl lg:inline lg:text-6xl text-primary opacity-0 animate-fade-in-delay-1">
-                <span className="lg:hidden"> </span>Luis Felipe Porto
+                <span className="lg:hidden"> </span> Luis Felipe Porto
               </span>
 
             </h1>

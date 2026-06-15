@@ -236,7 +236,6 @@ export const SkillsSection = () => {
           Technical <span className="text-primary">Skills</span>
         </h2>
 
-        {/* Ajuste de padding e texto para quebrar as abas de forma limpa no mobile */}
         <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 md:mb-12 px-2 md:px-0">
           {categories.map((category, key) => (
             <button
@@ -255,8 +254,8 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Alterado grid-cols-2 para grid-cols-6 no mobile para impor as 4 fileiras de 6 habilidades */}
-        <div className="grid grid-cols-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
+        {/* Alterado estritamente para grid-cols-4 no mobile e mantido o comportamento original md:grid-cols-4 lg:grid-cols-6 */}
+        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
           {filteredSkills.map((skill, index) => {
             const Icon = skill.icon;
 
@@ -280,18 +279,17 @@ export const SkillsSection = () => {
                     flex-col
                     items-center
                     justify-center
-                    h-20 md:h-28
-                    p-1 md:p-5
-                    gap-1 md:gap-3
+                    h-24 md:h-28
+                    p-2 md:p-5
+                    gap-2 md:gap-3
                   "
                 >
-                  {/* Removido o size estático inline e controlado via Tailwind para reduzir no mobile e manter o original no desktop */}
                   <Icon
                     className="text-primary w-5 h-5 md:w-6 md:h-6"
                   />
 
-                  {/* Micro-fonte aplicada apenas no mobile. Desktop mantido estritamente original (text-sm) */}
-                  <h3 className="font-medium text-center text-[10px] md:text-sm block w-full truncate px-0.5">
+                  {/* text-[11px] no mobile garante leitura completa dos nomes maiores sem quebras artificiais */}
+                  <h3 className="font-medium text-center text-[11px] md:text-sm block w-full px-0.5 leading-tight">
                     {skill.name}
                   </h3>
                 </div>

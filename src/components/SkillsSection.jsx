@@ -1,47 +1,34 @@
 import { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
-// ─── Skills Data ─────────────────────────────────────────────────────────────
+import {
+  SiPython,
+  SiPostgresql,
+  SiMysql,
+  SiPandas,
+  SiNumpy,
+  SiPlotly,
+  SiGit,
+  SiFigma,
+  SiJira,
+} from "react-icons/si";
 
-const skillsData = [
-  { name: "Power BI", category: "bi", icon: "📊" },
-  { name: "SQL", category: "data-eng", icon: "🛢️" },
-  { name: "Python", category: "data-eng", icon: "🐍" },
-  { name: "Excel", category: "bi", icon: "📈" },
-  { name: "VBA", category: "automation", icon: "💻" },
-  { name: "Power Automate", category: "automation", icon: "⚙️" },
-  { name: "MySQL", category: "data-eng", icon: "🐬" },
-  { name: "PostgreSQL", category: "data-eng", icon: "🐘" },
-  { name: "Prefect", category: "data-eng", icon: "🚀" },
-  { name: "Git", category: "dev", icon: "🐙" },
-  { name: "GitHub", category: "dev", icon: "🐱" },
-  { name: "Jira", category: "management", icon: "🎯" },
-  { name: "Scrum", category: "management", icon: "🔄" },
-  { name: "Data Modeling", category: "bi", icon: "📐" },
-  { name: "ETL / ELT", category: "data-eng", icon: "🔄" },
-  { name: "DAX", category: "bi", icon: "🔢" },
-  { name: "Power Query", category: "bi", icon: "🔍" },
-  { name: "SAP", category: "management", icon: "🏢" },
-  { name: "Figma", category: "dev", icon: "🎨" },
-  { name: "HTML / CSS", category: "dev", icon: "🌐" },
-  { name: "JavaScript", category: "dev", icon: "💛" },
-  { name: "React", category: "dev", icon: "⚛️" },
-  { name: "Tailwind CSS", category: "dev", icon: "🎨" },
-  { name: "Vite", category: "dev", icon: "⚡" }
-];
+import {
+  Database,
+  BarChart3,
+  Workflow,
+  GitBranch,
+  FileSpreadsheet,
+  Cpu,
+  Network,
+} from "lucide-react";
 
-const categories = [
-  { id: "all", label: "All Tech" },
-  { id: "bi", label: "Business Intelligence" },
-  { id: "data-eng", label: "Data Engineering" },
-  { id: "automation", label: "Automation" },
-  { id: "management", label: "Management & Agile" },
-  { id: "dev", label: "Development Tools" }
-];
+/* ===================================== */
+/* ANIMAÇÃO DE ENTRADA DOS CARDS */
+/* ===================================== */
 
-export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [animateItems, setAnimateItems] = useState(false);
-  const sectionRef = useRef(null);
+const AnimatedCard = ({ children, delay = 0 }) => {
+  const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -49,106 +36,270 @@ export const SkillsSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.15,
+      }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    setAnimateItems(false);
-    const timer = setTimeout(() => setAnimateItems(true), 50);
-    return () => clearTimeout(timer);
-  }, [activeCategory]);
+  return (
+    <div
+      ref={cardRef}
+      style={{
+        transitionDelay: `${delay}ms`,
+      }}
+      className={`
+        transition-all duration-1000 ease-out
+        ${
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-8"
+        }
+      `}
+    >
+      {children}
+    </div>
+  );
+};
 
-  const filteredSkills = skillsData.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
+/* ===================================== */
+/* SKILLS */
+/* ===================================== */
+
+const skills = [
+  // Business Intelligence
+  {
+    name: "Power BI",
+    category: "business intelligence",
+    icon: BarChart3,
+  },
+  {
+    name: "DAX",
+    category: "business intelligence",
+    icon: BarChart3,
+  },
+  {
+    name: "Power Query",
+    category: "business intelligence",
+    icon: Workflow,
+  },
+  {
+    name: "M Language",
+    category: "business intelligence",
+    icon: Cpu,
+  },
+
+  // Data & Analytics
+  {
+    name: "Python",
+    category: "data & analytics",
+    icon: SiPython,
+  },
+  {
+    name: "SQL",
+    category: "data & analytics",
+    icon: Database,
+  },
+  {
+    name: "Pandas",
+    category: "data & analytics",
+    icon: SiPandas,
+  },
+  {
+    name: "NumPy",
+    category: "data & analytics",
+    icon: SiNumpy,
+  },
+  {
+    name: "Plotly",
+    category: "data & analytics",
+    icon: SiPlotly,
+  },
+  {
+    name: "Matplotlib",
+    category: "data & analytics",
+    icon: BarChart3,
+  },
+
+  // Data Engineering
+  {
+    name: "PostgreSQL",
+    category: "data engineering",
+    icon: SiPostgresql,
+  },
+  {
+    name: "MySQL",
+    category: "data engineering",
+    icon: SiMysql,
+  },
+  {
+    name: "ETL/ELT",
+    category: "data engineering",
+    icon: Workflow,
+  },
+  {
+    name: "REST APIs",
+    category: "data engineering",
+    icon: Network,
+  },
+  {
+    name: "Data Pipelines",
+    category: "data engineering",
+    icon: Workflow,
+  },
+  {
+    name: "Star Schema",
+    category: "data engineering",
+    icon: Database,
+  },
+
+  // Tools & Automation
+  {
+    name: "Excel",
+    category: "tools & automation",
+    icon: FileSpreadsheet,
+  },
+  {
+    name: "VBA",
+    category: "tools & automation",
+    icon: Cpu,
+  },
+  {
+    name: "Git",
+    category: "tools & automation",
+    icon: SiGit,
+  },
+  {
+    name: "GitHub Actions",
+    category: "tools & automation",
+    icon: GitBranch,
+  },
+  {
+    name: "Power Automate",
+    category: "tools & automation",
+    icon: Workflow,
+  },
+  {
+    name: "Prefect",
+    category: "tools & automation",
+    icon: GitBranch,
+  },
+  {
+    name: "Jira",
+    category: "tools & automation",
+    icon: SiJira,
+  },
+  {
+    name: "Figma",
+    category: "tools & automation",
+    icon: SiFigma,
+  },
+];
+
+/* ===================================== */
+/* CATEGORIAS */
+/* ===================================== */
+
+const categories = [
+  "all",
+  "business intelligence",
+  "data & analytics",
+  "data engineering",
+  "tools & automation",
+];
+
+export const SkillsSection = () => {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filteredSkills = skills.filter(
+    (skill) =>
+      activeCategory === "all" ||
+      skill.category === activeCategory
   );
 
   return (
-    <section id="skills" className="py-16 md:py-24 px-4 relative">
-      <div
-        ref={sectionRef}
-        className={`container mx-auto max-w-5xl transition-all duration-700 ease-out ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        {/* Título */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Skills & <span className="text-primary">Technologies</span>
+    <section
+      id="skills"
+      className="py-16 md:py-24 px-4 relative bg-secondary/30"
+    >
+      <div className="container mx-auto max-w-6xl">
+
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center">
+          Technical <span className="text-primary">Skills</span>
         </h2>
 
-        <p className="text-center text-muted-foreground mb-10 md:mb-12 max-w-2xl mx-auto text-sm md:text-base">
-          My technical stack spans across data engineering pipelines, advanced analytics, 
-          process automation, and modern web utilities.
-        </p>
-
-        {/* Categorias / Abas */}
-        {/* Mobile: Layout reduzido em grid flexível para forçar a quebra organizada em 2 linhas */}
-        <div className="flex flex-wrap justify-center gap-1.5 md:gap-3 mb-10 max-w-4xl mx-auto px-2 md:px-0">
-          {categories.map((category) => (
+        {/* Ajuste de padding e texto para quebrar as abas de forma limpa no mobile */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 md:mb-12 px-2 md:px-0">
+          {categories.map((category, key) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`
-                rounded-full transition-all duration-300 font-medium whitespace-nowrap
-                text-xs md:text-sm 
-                px-3 py-1.5 md:px-5 md:py-2
-                border
-                ${
-                  activeCategory === category.id
-                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20 scale-100"
-                    : "bg-card/40 backdrop-blur-sm text-muted-foreground border-border/60 hover:text-foreground hover:border-primary/50"
-                }
-              `}
+              key={key}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "rounded-full transition-colors duration-300 capitalize font-medium",
+                "px-3 py-1.5 md:px-5 md:py-2 text-xs md:text-base",
+                activeCategory === category
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary/70 text-foreground hover:bg-secondary"
+              )}
             >
-              {category.label}
+              {category}
             </button>
           ))}
         </div>
 
-        {/* Grid de Habilidades */}
-        {/* Forçado grid-cols-6 nativo desde o mobile para formar as 4 fileiras perfeitas de 6 elementos */}
-        <div 
-          className={`
-            grid grid-cols-6 md:grid-cols-4 lg:grid-cols-6 
-            gap-2 md:gap-4 
-            transition-all duration-500
-            ${animateItems ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-          `}
-        >
-          {filteredSkills.map((skill, index) => (
-            <div
-              key={skill.name}
-              style={{ transitionDelay: `${index * 25}ms` }}
-              className="group relative flex flex-col items-center justify-center rounded-xl border border-primary/10 bg-card/40 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-card/60 hover:-translate-y-1 text-center
-                p-2 md:p-5"
-            >
-              {/* Efeito Glow Invisível no Desktop / Suave no Mobile */}
-              <div className="absolute inset-0 -z-10 rounded-xl bg-primary/5 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
+        {/* Alterado grid-cols-2 para grid-cols-6 no mobile para impor as 4 fileiras de 6 habilidades */}
+        <div className="grid grid-cols-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
+          {filteredSkills.map((skill, index) => {
+            const Icon = skill.icon;
 
-              {/* Ícone Reduzido no Mobile para caber na estrutura compacta */}
-              <div className="flex items-center justify-center rounded-lg bg-white/5 transition-colors group-hover:bg-primary/10
-                w-7 h-7 md:w-12 md:h-12 
-                text-base md:text-2xl 
-                mb-1 md:mb-3"
+            return (
+              <AnimatedCard
+                key={skill.name}
+                delay={index * 50}
               >
-                {skill.icon}
-              </div>
+                <div
+                  className="
+                    rounded-xl
+                    border border-primary/20
+                    bg-card/60
+                    backdrop-blur-md
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:border-primary/50
+                    hover:shadow-[0_0_25px_rgba(139,92,246,0.25)]
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    h-20 md:h-28
+                    p-1 md:p-5
+                    gap-1 md:gap-3
+                  "
+                >
+                  {/* Removido o size estático inline e controlado via Tailwind para reduzir no mobile e manter o original no desktop */}
+                  <Icon
+                    className="text-primary w-5 h-5 md:w-6 md:h-6"
+                  />
 
-              {/* Texto de Habilidade Ajustado para Micro-Fonte sem quebrar blocos */}
-              <span className="font-medium text-foreground/90 tracking-tight group-hover:text-primary transition-colors
-                text-[10px] md:text-sm md:font-semibold 
-                block w-full truncate px-0.5"
-              >
-                {skill.name}
-              </span>
-            </div>
-          ))}
+                  {/* Micro-fonte aplicada apenas no mobile. Desktop mantido estritamente original (text-sm) */}
+                  <h3 className="font-medium text-center text-[10px] md:text-sm block w-full truncate px-0.5">
+                    {skill.name}
+                  </h3>
+                </div>
+              </AnimatedCard>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );

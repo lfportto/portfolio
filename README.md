@@ -1,5 +1,7 @@
 # Website de Potfólio Profissional
 
+📄 [English version](README_English.md)
+
 ## Descrição do Projeto
 Este projeto consiste no desenvolvimento de um portfólio profissional responsivo para apresentação de experiência profissional, habilidades técnicas, projetos e informações de contato. A aplicação foi desenvolvida como uma página única (Single Page Application - SPA) utilizando principalmente React e TailwindCSS, com foco em navegação fluida, experiência do usuário e adaptação para diferentes dispositivos. O objetivo é centralizar e organizar informações profissionais, projetos e links relevantes em uma única plataforma.  
 O site pode ser acessado clicando [aqui](https://portfolio-luis-felipe-porto.vercel.app/#contact).

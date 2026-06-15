@@ -374,8 +374,12 @@ export const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeModal, setActiveModal] = useState(null); // holds project object or null
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
 
   useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -386,7 +390,11 @@ export const ProjectsSection = () => {
       { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      observer.disconnect();
+    };
   }, []);
 
   const nextProject = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
@@ -402,10 +410,11 @@ export const ProjectsSection = () => {
   };
 
   const visibleProjects = getVisibleProjects();
+  const isMobile = windowWidth < 768;
 
   return (
     <>
-      <section id="projects" className="py-24 px-4 relative">
+      <section id="projects" className="py-12 md:py-24 px-4 relative overflow-hidden">
         <div
           ref={sectionRef}
           className={`container mx-auto max-w-7xl transition-all duration-700 ease-out ${
@@ -416,29 +425,29 @@ export const ProjectsSection = () => {
             Featured <span className="text-primary">Projects</span>
           </h2>
 
-          <p className="text-center text-muted-foreground mb-16 max-w-3xl mx-auto">
+          <p className="text-center text-muted-foreground mb-10 md:mb-16 max-w-3xl mx-auto text-sm md:text-base">
             A selection of personal projects focused on Data Analytics, Business
             Intelligence, Data Engineering and Process Automation. Each project
             was designed to solve real-world problems through data-driven
             solutions.
           </p>
 
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[500px]">
             <button
               onClick={prevProject}
-              className="absolute left-0 z-30 p-3 rounded-full bg-card border border-border hover:border-primary transition-all"
+              className="absolute left-2 md:left-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all"
             >
-              <ArrowLeft size={22} />
+              <ArrowLeft size={20} />
             </button>
 
-            <div className="flex items-center justify-center gap-8">
+            <div className="flex items-center justify-center gap-4 md:gap-8 w-full overflow-visible">
               {visibleProjects.map((project) => {
                 const isCenter = project.position === 0;
 
                 const cardStyle = {
-                  width: "420px",
-                  opacity: isCenter ? 1 : 0.45,
-                  transform: isCenter ? "scale(1)" : "scale(0.82)",
+                  width: isMobile ? "calc(100vw - 88px)" : "420px",
+                  opacity: isCenter ? 1 : (isMobile ? 0.55 : 0.45),
+                  transform: isCenter ? "scale(1)" : (isMobile ? "scale(0.85)" : "scale(0.82)"),
                   transition: "all 700ms cubic-bezier(0.22, 1, 0.36, 1)",
                   boxShadow: isCenter
                     ? "0 0 45px rgba(139,92,246,0.25)"
@@ -447,12 +456,12 @@ export const ProjectsSection = () => {
                 };
 
                 const imageStyle = {
-                  height: isCenter ? "224px" : "160px",
+                  height: isCenter ? (isMobile ? "180px" : "224px") : (isMobile ? "140px" : "160px"),
                   transition: heightTransition,
                 };
 
                 const titleStyle = {
-                  fontSize: isCenter ? "1.25rem" : "1rem",
+                  fontSize: isCenter ? (isMobile ? "1.15rem" : "1.25rem") : "1rem",
                   transition: fontTransition,
                 };
 
@@ -473,7 +482,6 @@ export const ProjectsSection = () => {
                     key={project.id}
                     style={cardStyle}
                     className="group bg-card/60 backdrop-blur-md border border-primary/20 rounded-2xl overflow-hidden flex-shrink-0"
-                    // Clicking anywhere on the card opens modal (only when center)
                     onClick={() => isCenter && setActiveModal(project)}
                   >
                     {/* Project image */}
@@ -485,28 +493,28 @@ export const ProjectsSection = () => {
                       />
                     </div>
 
-                    <div className="p-6">
-                      <h3 style={titleStyle} className="font-bold mb-3 leading-snug">
+                    <div className="p-5 md:p-6">
+                      <h3 style={titleStyle} className="font-bold mb-2 md:mb-3 leading-snug">
                         {project.title}
                       </h3>
 
-                      <div className="flex flex-wrap gap-2 mb-3">
+                      <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 text-xs font-medium border rounded-full"
+                            className="px-2.5 py-0.5 md:px-3 md:py-1 text-[11px] md:text-xs font-medium border rounded-full bg-white/5"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <p style={descStyle} className="text-muted-foreground text-sm mb-4">
+                      <p style={descStyle} className="text-muted-foreground text-xs md:text-sm mb-4 leading-relaxed">
                         {project.description}
                       </p>
 
                       {/* Bottom row: icons + "click for details" hint */}
-                      <div style={linksStyle} className="flex items-center justify-between">
+                      <div style={linksStyle} className="flex items-center justify-between pt-1">
                         {/* Icon links — stop propagation so they don't open modal */}
                         <div className="flex items-center gap-4">
                           <a
@@ -514,25 +522,25 @@ export const ProjectsSection = () => {
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-foreground/80 hover:text-primary transition-colors"
+                            className="text-foreground/80 hover:text-primary transition-colors p-1"
                             aria-label="GitHub repository"
                           >
-                            <Github size={22} />
+                            <Github size={20} />
                           </a>
                           <a
                             href={project.demoUrl}
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-foreground/80 hover:text-primary transition-colors"
+                            className="text-foreground/80 hover:text-primary transition-colors p-1"
                             aria-label="Live dashboard"
                           >
-                            <ExternalLink size={22} />
+                            <ExternalLink size={20} />
                           </a>
                         </div>
 
                         {/* "Click to see details" hint text */}
-                        <span className="text-xs text-muted-foreground/60 select-none italic">
+                        <span className="text-[11px] text-muted-foreground/60 select-none italic">
                           Click to see details
                         </span>
                       </div>
@@ -544,15 +552,15 @@ export const ProjectsSection = () => {
 
             <button
               onClick={nextProject}
-              className="absolute right-0 z-30 p-3 rounded-full bg-card border border-border hover:border-primary transition-all"
+              className="absolute right-2 md:right-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all"
             >
-              <ArrowRight size={22} />
+              <ArrowRight size={20} />
             </button>
           </div>
 
-          <div className="text-center mt-16">
+          <div className="text-center mt-12 md:mt-16">
             <a
-              className="cosmic-button w-fit flex items-center mx-auto gap-2"
+              className="cosmic-button w-fit flex items-center mx-auto gap-2 text-sm md:text-base"
               target="_blank"
               rel="noreferrer"
               href="https://github.com/lfportto"

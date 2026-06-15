@@ -10,8 +10,8 @@ export const ContactSection = () => {
     <section id="contact" className="py-16 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
 
-        {/* Título - Ajustado para text-3xl no mobile, preservando md/lg idênticos ao original */}
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
+        {/* Título*/}
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
           Get In <span className="text-primary">Touch</span>
         </h2>
 

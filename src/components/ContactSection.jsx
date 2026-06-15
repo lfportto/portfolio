@@ -11,7 +11,7 @@ export const ContactSection = () => {
       <div className="container mx-auto max-w-5xl">
 
         {/* Título*/}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
+        <h2 className="text-5xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
           Get In <span className="text-primary">Touch</span>
         </h2>
 

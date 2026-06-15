@@ -226,11 +226,12 @@ export const SkillsSection = () => {
   );
 
   return (
+    // Removido padding horizontal no mobile (px-0) para esticar os blocos até as bordas físicas da tela
     <section
       id="skills"
-      className="py-16 md:py-24 px-4 relative bg-secondary/30"
+      className="py-16 md:py-24 px-0 md:px-4 relative bg-secondary/30"
     >
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl px-2 md:px-0">
 
         <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center">
           Technical <span className="text-primary">Skills</span>
@@ -254,8 +255,8 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Alterado estritamente para grid-cols-4 no mobile e mantido o comportamento original md:grid-cols-4 lg:grid-cols-6 */}
-        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
+        {/* Ajustado o gap no mobile para 1.5, maximizando a área interna de cada card quadrado */}
+        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1.5 md:gap-4">
           {filteredSkills.map((skill, index) => {
             const Icon = skill.icon;
 
@@ -279,17 +280,17 @@ export const SkillsSection = () => {
                     flex-col
                     items-center
                     justify-center
-                    h-24 md:h-28
-                    p-2 md:p-5
-                    gap-2 md:gap-3
+                    h-20 md:h-28
+                    p-1 md:p-5
+                    gap-1 md:gap-3
                   "
                 >
                   <Icon
                     className="text-primary w-5 h-5 md:w-6 md:h-6"
                   />
 
-                  {/* text-[11px] no mobile garante leitura completa dos nomes maiores sem quebras artificiais */}
-                  <h3 className="font-medium text-center text-[11px] md:text-sm block w-full px-0.5 leading-tight">
+                  {/* Padding interno zerado nas laterais e flexibilidade inline para acomodar strings longas */}
+                  <h3 className="font-medium text-center text-[11px] md:text-sm block w-full px-0 leading-tight break-words">
                     {skill.name}
                   </h3>
                 </div>

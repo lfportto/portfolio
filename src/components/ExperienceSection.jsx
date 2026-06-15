@@ -149,8 +149,8 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Blocado com texto original explícito (text-sm) fixado para telas grandes */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Developed dashboards, automated workflows and data pipelines for global operational teams.</span>
@@ -207,8 +207,8 @@ export const ExperienceSection = () => {
                   Suzano
                 </p>
 
-                {/* Blocado com texto original explícito (text-sm) fixado para telas grandes */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Monitored operational and quality KPIs to support process improvement initiatives.</span>
@@ -265,8 +265,8 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Blocado com texto original explícito (text-sm) fixado para telas grandes */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Supported manufacturing, logistics and production operations in an electronics manufacturing environment.</span>

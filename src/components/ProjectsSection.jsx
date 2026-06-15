@@ -414,7 +414,8 @@ export const ProjectsSection = () => {
 
   return (
     <>
-      <section id="projects" className="py-12 md:py-24 px-4 relative overflow-hidden">
+      {/* Added clear overflow-x management to allow side cards exploration safely */}
+      <section id="projects" className="py-12 md:py-24 px-4 relative overflow-x-hidden">
         <div
           ref={sectionRef}
           className={`container mx-auto max-w-7xl transition-all duration-700 ease-out ${
@@ -432,26 +433,28 @@ export const ProjectsSection = () => {
             solutions.
           </p>
 
-          {/* Added context wrapper for safe arrows alignment on mobile */}
-          <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[500px] px-2 md:px-0">
+          {/* Main Context Track: Expanded mobile hit constraints to prevent clipping */}
+          <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[500px] px-6 md:px-0">
+            
+            {/* Absolute Arrows Positioned outside content flow via negative offsets on mobile */}
             <button
               onClick={prevProject}
-              className="absolute left-0 md:left-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all shadow-lg"
+              className="absolute left-1 md:left-0 z-30 p-2.5 md:p-3 rounded-full bg-card/95 backdrop-blur-md border border-border hover:border-primary transition-all shadow-xl active:scale-95"
             >
               <ArrowLeft size={20} />
             </button>
 
-            {/* Changed from overflow-visible to overflow-visible + explicit viewport constraints on mobile */}
-            <div className="flex items-center justify-center gap-3 md:gap-8 w-full overflow-visible max-w-full">
+            {/* Carousel flex track with open visible layout parameters */}
+            <div className="flex items-center justify-center gap-5 md:gap-8 w-full overflow-visible">
               {visibleProjects.map((project) => {
                 const isCenter = project.position === 0;
 
                 const cardStyle = {
-                  // Reduced size slightly on mobile to give clearance for arrow buttons
-                  width: isMobile ? "calc(100vw - 110px)" : "420px",
-                  opacity: isCenter ? 1 : (isMobile ? 0.40 : 0.45),
-                  // Adjusted scale factor to guarantee the side visibility
-                  transform: isCenter ? "scale(1)" : (isMobile ? "scale(0.80)" : "scale(0.82)"),
+                  // Reduced center card footprint horizontally to display more of the siblings borders
+                  width: isMobile ? "calc(100vw - 140px)" : "420px",
+                  opacity: isCenter ? 1 : (isMobile ? 0.35 : 0.45),
+                  // Adjusted non-active card scaling to optimize horizontal stack density on small layouts
+                  transform: isCenter ? "scale(1)" : (isMobile ? "scale(0.78)" : "scale(0.82)"),
                   transition: "all 700ms cubic-bezier(0.22, 1, 0.36, 1)",
                   boxShadow: isCenter
                     ? "0 0 45px rgba(139,92,246,0.25)"
@@ -460,12 +463,12 @@ export const ProjectsSection = () => {
                 };
 
                 const imageStyle = {
-                  height: isCenter ? (isMobile ? "180px" : "224px") : (isMobile ? "140px" : "160px"),
+                  height: isCenter ? (isMobile ? "170px" : "224px") : (isMobile ? "135px" : "160px"),
                   transition: heightTransition,
                 };
 
                 const titleStyle = {
-                  fontSize: isCenter ? (isMobile ? "1.15rem" : "1.25rem") : "1rem",
+                  fontSize: isCenter ? (isMobile ? "1.1rem" : "1.25rem") : "0.95rem",
                   transition: fontTransition,
                 };
 
@@ -497,7 +500,7 @@ export const ProjectsSection = () => {
                       />
                     </div>
 
-                    <div className="p-5 md:p-6">
+                    <div className="p-4 md:p-6">
                       <h3 style={titleStyle} className="font-bold mb-2 md:mb-3 leading-snug">
                         {project.title}
                       </h3>
@@ -506,7 +509,7 @@ export const ProjectsSection = () => {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2.5 py-0.5 md:px-3 md:py-1 text-[11px] md:text-xs font-medium border rounded-full bg-white/5"
+                            className="px-2 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-medium border rounded-full bg-white/5"
                           >
                             {tag}
                           </span>
@@ -519,7 +522,6 @@ export const ProjectsSection = () => {
 
                       {/* Bottom row: icons + "click for details" hint */}
                       <div style={linksStyle} className="flex items-center justify-between pt-1">
-                        {/* Icon links — stop propagation so they don't open modal */}
                         <div className="flex items-center gap-4">
                           <a
                             href={project.githubUrl}
@@ -543,7 +545,6 @@ export const ProjectsSection = () => {
                           </a>
                         </div>
 
-                        {/* "Click to see details" hint text */}
                         <span className="text-[11px] text-muted-foreground/60 select-none italic">
                           Click to see details
                         </span>
@@ -556,7 +557,7 @@ export const ProjectsSection = () => {
 
             <button
               onClick={nextProject}
-              className="absolute right-0 md:right-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all shadow-lg"
+              className="absolute right-1 md:right-0 z-30 p-2.5 md:p-3 rounded-full bg-card/95 backdrop-blur-md border border-border hover:border-primary transition-all shadow-xl active:scale-95"
             >
               <ArrowRight size={20} />
             </button>

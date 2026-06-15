@@ -149,19 +149,18 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Developed dashboards, automated workflows and data pipelines for global operational teams.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Worked with Power BI, SQL, Python and Power Automate to improve data quality and decision-making processes.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Reduced analysis time by up to <strong className="text-foreground font-semibold">97%</strong> through automation and large-scale data validation solutions.</span>
                   </li>
@@ -207,19 +206,18 @@ export const ExperienceSection = () => {
                   Suzano
                 </p>
 
-                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Monitored operational and quality KPIs to support process improvement initiatives.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Developed dashboards and automated reports using Excel, VBA and Power BI.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Reduced daily analysis time by up to <strong className="text-foreground font-semibold">93%</strong> through process automation and reporting improvements.</span>
                   </li>
@@ -265,19 +263,18 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Removido qualquer limitador de fonte. Segue o padrão limpo do projeto */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left leading-relaxed">
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Supported manufacturing, logistics and production operations in an electronics manufacturing environment.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Worked across inventory management, production support and machine operation activities.</span>
                   </li>
 
-                  <li className="flex items-start gap-1">
+                  <li className="flex items-start gap-1 text-sm md:text-base">
                     <span className="select-none mt-0.5">•</span>
                     <span>Developed a strong understanding of industrial processes, operational workflows and continuous improvement.</span>
                   </li>

@@ -94,10 +94,10 @@ export const ExperienceSection = () => {
         {/* Timeline */}
         <div ref={timelineRef} className="relative">
 
-          {/* Linha base - Movida para a esquerda no mobile, restaurada no desktop */}
+          {/* Linha base */}
           <div className="absolute left-6 md:left-40 top-0 bottom-0 w-0.5 bg-primary/20 z-0"></div>
 
-          {/* Linha animada - Ajustada de forma responsiva */}
+          {/* Linha animada */}
           <div
             className="absolute left-[23px] md:left-[159px] top-0 w-1 rounded-full z-0 transition-all duration-300"
             style={{
@@ -109,7 +109,7 @@ export const ExperienceSection = () => {
             }}
           />
 
-          {/* Bolinha luminosa - Alinhamento responsivo */}
+          {/* Bolinha luminosa */}
           <div
             className="absolute left-6 md:left-40 w-4 h-4 rounded-full bg-white z-20 animate-pulse"
             style={{
@@ -125,14 +125,14 @@ export const ExperienceSection = () => {
           {/* ========================================= */}
           <div className="relative pl-14 md:pl-56 pb-12 md:pb-16">
 
-            {/* Data - Convertida para bloco superior no mobile e lateral no desktop */}
+            {/* Data */}
             <div className="relative md:absolute left-0 top-0 md:top-2 w-full md:w-32 text-left md:text-right mb-3 md:mb-0 block">
               <span className="text-xs md:text-sm font-semibold md:font-medium text-primary bg-primary/10 md:bg-transparent px-2 py-0.5 md:p-0 rounded md:rounded-none inline-block md:inline">
                 May 2024 — Dec 2025
               </span>
             </div>
 
-            {/* Ícone - Posicionamento unificado na nova espinha */}
+            {/* Ícone */}
             <div className="absolute left-[2px] md:left-[136px] top-0 md:top-0 z-10 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary border border-primary shadow-lg scale-90 md:scale-100">
               <Briefcase className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
@@ -149,6 +149,7 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
+                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
@@ -206,6 +207,7 @@ export const ExperienceSection = () => {
                   Suzano
                 </p>
 
+                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
@@ -263,6 +265,7 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
+                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
                 <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>

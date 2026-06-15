@@ -432,22 +432,26 @@ export const ProjectsSection = () => {
             solutions.
           </p>
 
-          <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[500px]">
+          {/* Added context wrapper for safe arrows alignment on mobile */}
+          <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[500px] px-2 md:px-0">
             <button
               onClick={prevProject}
-              className="absolute left-2 md:left-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all"
+              className="absolute left-0 md:left-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all shadow-lg"
             >
               <ArrowLeft size={20} />
             </button>
 
-            <div className="flex items-center justify-center gap-4 md:gap-8 w-full overflow-visible">
+            {/* Changed from overflow-visible to overflow-visible + explicit viewport constraints on mobile */}
+            <div className="flex items-center justify-center gap-3 md:gap-8 w-full overflow-visible max-w-full">
               {visibleProjects.map((project) => {
                 const isCenter = project.position === 0;
 
                 const cardStyle = {
-                  width: isMobile ? "calc(100vw - 88px)" : "420px",
-                  opacity: isCenter ? 1 : (isMobile ? 0.55 : 0.45),
-                  transform: isCenter ? "scale(1)" : (isMobile ? "scale(0.85)" : "scale(0.82)"),
+                  // Reduced size slightly on mobile to give clearance for arrow buttons
+                  width: isMobile ? "calc(100vw - 110px)" : "420px",
+                  opacity: isCenter ? 1 : (isMobile ? 0.40 : 0.45),
+                  // Adjusted scale factor to guarantee the side visibility
+                  transform: isCenter ? "scale(1)" : (isMobile ? "scale(0.80)" : "scale(0.82)"),
                   transition: "all 700ms cubic-bezier(0.22, 1, 0.36, 1)",
                   boxShadow: isCenter
                     ? "0 0 45px rgba(139,92,246,0.25)"
@@ -552,7 +556,7 @@ export const ProjectsSection = () => {
 
             <button
               onClick={nextProject}
-              className="absolute right-2 md:right-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all"
+              className="absolute right-0 md:right-0 z-30 p-2.5 md:p-3 rounded-full bg-card/90 backdrop-blur-md border border-border hover:border-primary transition-all shadow-lg"
             >
               <ArrowRight size={20} />
             </button>

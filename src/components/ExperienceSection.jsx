@@ -74,7 +74,7 @@ export const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-24 px-4 relative">
+    <section id="experience" className="py-16 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-6xl">
 
         {/* Título */}
@@ -83,7 +83,7 @@ export const ExperienceSection = () => {
         </h2>
 
         {/* Introdução */}
-        <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+        <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-16 text-sm md:text-base">
           My professional journey started in manufacturing operations and
           gradually evolved toward process improvement, analytics, automation
           and data engineering. This background allows me to combine business
@@ -94,12 +94,12 @@ export const ExperienceSection = () => {
         {/* Timeline */}
         <div ref={timelineRef} className="relative">
 
-          {/* Linha base */}
-          <div className="absolute left-40 top-0 bottom-0 w-0.5 bg-primary/20 z-0"></div>
+          {/* Linha base - Movida para a esquerda no mobile, restaurada no desktop */}
+          <div className="absolute left-6 md:left-40 top-0 bottom-0 w-0.5 bg-primary/20 z-0"></div>
 
-          {/* Linha animada */}
+          {/* Linha animada - Ajustada de forma responsiva */}
           <div
-            className="absolute left-[159px] top-0 w-1 rounded-full z-0 transition-all duration-300"
+            className="absolute left-[23px] md:left-[159px] top-0 w-1 rounded-full z-0 transition-all duration-300"
             style={{
               height: `${progress}%`,
               background:
@@ -109,9 +109,9 @@ export const ExperienceSection = () => {
             }}
           />
 
-          {/* Bolinha luminosa */}
+          {/* Bolinha luminosa - Alinhamento responsivo */}
           <div
-            className="absolute left-40 w-4 h-4 rounded-full bg-white z-20 animate-pulse"
+            className="absolute left-6 md:left-40 w-4 h-4 rounded-full bg-white z-20 animate-pulse"
             style={{
               top: `${progress}%`,
               transform: "translate(-50%, -50%)",
@@ -123,214 +123,173 @@ export const ExperienceSection = () => {
           {/* ========================================= */}
           {/* EXPERIÊNCIA 1 */}
           {/* ========================================= */}
-          <div className="relative pl-56 pb-16">
+          <div className="relative pl-14 md:pl-56 pb-12 md:pb-16">
 
-            {/* Data */}
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                May 2024
-              </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Dec 2025
+            {/* Data - Convertida para bloco superior no mobile e lateral no desktop */}
+            <div className="relative md:absolute left-0 top-0 md:top-2 w-full md:w-32 text-left md:text-right mb-3 md:mb-0 block">
+              <span className="text-xs md:text-sm font-semibold md:font-medium text-primary bg-primary/10 md:bg-transparent px-2 py-0.5 md:p-0 rounded md:rounded-none inline-block md:inline">
+                May 2024 — Dec 2025
               </span>
             </div>
 
-            {/* Ícone */}
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
+            {/* Ícone - Posicionamento unificado na nova espinha */}
+            <div className="absolute left-[2px] md:left-[136px] top-0 md:top-0 z-10 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary border border-primary shadow-lg scale-90 md:scale-100">
+              <Briefcase className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
 
             {/* Card */}
             <AnimatedCard delay={0}>
-        <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
+              <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-5 md:p-6 text-left md:text-center">
 
-              <h3 className="text-xl font-semibold">
-                Data Analyst Intern
-              </h3>
+                <h3 className="text-lg md:text-xl font-bold md:font-semibold">
+                  Data Analyst Intern
+                </h3>
 
-              <p className="text-primary font-medium">
-                Ericsson
-              </p>
+                <p className="text-primary font-medium text-sm md:text-base mt-0.5 md:mt-0">
+                  Ericsson
+                </p>
 
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Developed dashboards, automated workflows and data
-                  pipelines for global operational teams.
-                </li>
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Developed dashboards, automated workflows and data pipelines for global operational teams.</span>
+                  </li>
 
-                <li>
-                  • Worked with Power BI, SQL, Python and Power Automate
-                  to improve data quality and decision-making processes.
-                </li>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Worked with Power BI, SQL, Python and Power Automate to improve data quality and decision-making processes.</span>
+                  </li>
 
-                <li>
-                  • Reduced analysis time by up to <strong>97%</strong>
-                  through automation and large-scale data validation
-                  solutions.
-                </li>
-              </ul>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Reduced analysis time by up to <strong className="text-foreground font-semibold">97%</strong> through automation and large-scale data validation solutions.</span>
+                  </li>
+                </ul>
 
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power BI
-                </span>
+                <div className="flex flex-wrap justify-start md:justify-center gap-1.5 md:gap-2 mt-5">
+                  {["Power BI", "SQL", "Python", "Power Automate", "Jira"].map((tech) => (
+                    <span key={tech} className="px-2.5 py-0.5 md:px-3 md:py-1 text-[11px] md:text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  SQL
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Python
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power Automate
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Jira
-                </span>
               </div>
-
-            </div>
-          </AnimatedCard>
+            </AnimatedCard>
           </div>
 
           {/* ========================================= */}
           {/* EXPERIÊNCIA 2 */}
           {/* ========================================= */}
-          <div className="relative pl-56 pb-16">
+          <div className="relative pl-14 md:pl-56 pb-12 md:pb-16">
 
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                Aug 2023
-              </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Apr 2024
+            {/* Data */}
+            <div className="relative md:absolute left-0 top-0 md:top-2 w-full md:w-32 text-left md:text-right mb-3 md:mb-0 block">
+              <span className="text-xs md:text-sm font-semibold md:font-medium text-primary bg-primary/10 md:bg-transparent px-2 py-0.5 md:p-0 rounded md:rounded-none inline-block md:inline">
+                Aug 2023 — Apr 2024
               </span>
             </div>
 
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
+            {/* Ícone */}
+            <div className="absolute left-[2px] md:left-[136px] top-0 md:top-0 z-10 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary border border-primary shadow-lg scale-90 md:scale-100">
+              <Briefcase className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
 
             <AnimatedCard delay={200}>
-  <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
+              <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-5 md:p-6 text-left md:text-center">
 
-              <h3 className="text-xl font-semibold">
-                Process Engineering Intern
-              </h3>
+                <h3 className="text-lg md:text-xl font-bold md:font-semibold">
+                  Process Engineering Intern
+                </h3>
 
-              <p className="text-primary font-medium">
-                Suzano
-              </p>
+                <p className="text-primary font-medium text-sm md:text-base mt-0.5 md:mt-0">
+                  Suzano
+                </p>
 
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Monitored operational and quality KPIs to support
-                  process improvement initiatives.
-                </li>
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Monitored operational and quality KPIs to support process improvement initiatives.</span>
+                  </li>
 
-                <li>
-                  • Developed dashboards and automated reports using
-                  Excel, VBA and Power BI.
-                </li>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Developed dashboards and automated reports using Excel, VBA and Power BI.</span>
+                  </li>
 
-                <li>
-                  • Reduced daily analysis time by up to <strong>93%</strong>
-                  through process automation and reporting improvements.
-                </li>
-              </ul>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Reduced daily analysis time by up to <strong className="text-foreground font-semibold">93%</strong> through process automation and reporting improvements.</span>
+                  </li>
+                </ul>
 
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Excel
-                </span>
+                <div className="flex flex-wrap justify-start md:justify-center gap-1.5 md:gap-2 mt-5">
+                  {["Excel", "VBA", "Power BI", "SAP"].map((tech) => (
+                    <span key={tech} className="px-2.5 py-0.5 md:px-3 md:py-1 text-[11px] md:text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  VBA
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Power BI
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  SAP
-                </span>
               </div>
-
-            </div>
-          </AnimatedCard>
-
-            </div>
+            </AnimatedCard>
+          </div>
 
           {/* ========================================= */}
           {/* EXPERIÊNCIA 3 */}
           {/* ========================================= */}
-          <div className="relative pl-56">
+          <div className="relative pl-14 md:pl-56">
 
-            <div className="absolute left-0 top-2 w-32 text-right">
-              <span className="text-sm font-medium text-primary">
-                Feb 2021
-              </span>
-              <br />
-              <span className="text-sm text-muted-foreground">
-                Dec 2022
+            {/* Data */}
+            <div className="relative md:absolute left-0 top-0 md:top-2 w-full md:w-32 text-left md:text-right mb-3 md:mb-0 block">
+              <span className="text-xs md:text-sm font-semibold md:font-medium text-primary bg-primary/10 md:bg-transparent px-2 py-0.5 md:p-0 rounded md:rounded-none inline-block md:inline">
+                Feb 2021 — Dec 2022
               </span>
             </div>
 
-            <div className="absolute left-[136px] z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary border border-primary shadow-lg">
-              <Briefcase className="h-5 w-5 text-primary-foreground" />
+            {/* Ícone */}
+            <div className="absolute left-[2px] md:left-[136px] top-0 md:top-0 z-10 flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary border border-primary shadow-lg scale-90 md:scale-100">
+              <Briefcase className="h-4 w-4 md:h-5 md:w-5 text-primary-foreground" />
             </div>
 
             <AnimatedCard delay={400}>
-  <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-6 text-center">
+              <div className="rounded-xl border border-primary/20 bg-card/60 backdrop-blur-md p-5 md:p-6 text-left md:text-center">
 
-              <h3 className="text-xl font-semibold">
-                Production Apprentice
-              </h3>
+                <h3 className="text-lg md:text-xl font-bold md:font-semibold">
+                  Production Apprentice
+                </h3>
 
-              <p className="text-primary font-medium">
-                Ericsson
-              </p>
+                <p className="text-primary font-medium text-sm md:text-base mt-0.5 md:mt-0">
+                  Ericsson
+                </p>
 
-              <ul className="mt-4 space-y-2 text-muted-foreground text-left">
-                <li>
-                  • Supported manufacturing, logistics and production
-                  operations in an electronics manufacturing environment.
-                </li>
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Supported manufacturing, logistics and production operations in an electronics manufacturing environment.</span>
+                  </li>
 
-                <li>
-                  • Worked across inventory management, production support
-                  and machine operation activities.
-                </li>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Worked across inventory management, production support and machine operation activities.</span>
+                  </li>
 
-                <li>
-                  • Developed a strong understanding of industrial
-                  processes, operational workflows and continuous
-                  improvement.
-                </li>
-              </ul>
+                  <li className="flex items-start gap-1">
+                    <span className="select-none mt-0.5">•</span>
+                    <span>Developed a strong understanding of industrial processes, operational workflows and continuous improvement.</span>
+                  </li>
+                </ul>
 
-              <div className="flex flex-wrap justify-center gap-2 mt-5">
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Manufacturing
-                </span>
+                <div className="flex flex-wrap justify-start md:justify-center gap-1.5 md:gap-2 mt-5">
+                  {["Manufacturing", "Logistics", "Operations"].map((tech) => (
+                    <span key={tech} className="px-2.5 py-0.5 md:px-3 md:py-1 text-[11px] md:text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Logistics
-                </span>
-
-                <span className="px-3 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                  Operations
-                </span>
               </div>
-
-            </div>
-          </AnimatedCard>
+            </AnimatedCard>
           </div>
         </div>
       </div>

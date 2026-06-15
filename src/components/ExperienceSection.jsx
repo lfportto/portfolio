@@ -149,8 +149,8 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Corrigido: text-[13px] para mobile. Removido md:text-sm para herdar o tamanho original do desktop */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-inherit leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Developed dashboards, automated workflows and data pipelines for global operational teams.</span>
@@ -207,8 +207,8 @@ export const ExperienceSection = () => {
                   Suzano
                 </p>
 
-                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Corrigido: text-[13px] para mobile. Removido md:text-sm para herdar o tamanho original do desktop */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-inherit leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Monitored operational and quality KPIs to support process improvement initiatives.</span>
@@ -265,8 +265,8 @@ export const ExperienceSection = () => {
                   Ericsson
                 </p>
 
-                {/* Corrigido: text-[13px] para mobile e restaurado text-sm para desktop */}
-                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-sm leading-relaxed">
+                {/* Corrigido: text-[13px] para mobile. Removido md:text-sm para herdar o tamanho original do desktop */}
+                <ul className="mt-4 space-y-2 text-muted-foreground text-left text-[13px] md:text-inherit leading-relaxed">
                   <li className="flex items-start gap-1">
                     <span className="select-none mt-0.5">•</span>
                     <span>Supported manufacturing, logistics and production operations in an electronics manufacturing environment.</span>

@@ -1,9 +1,9 @@
-# Website de Potfólio Profissional
+# Website de Portfólio Profissional
 
 📄 [English version](README_English.md)
 
 ## Descrição do Projeto
-Este projeto consiste no desenvolvimento de um portfólio profissional responsivo para apresentação de experiência profissional, habilidades técnicas, projetos e informações de contato. A aplicação foi desenvolvida como uma página única (Single Page Application - SPA) utilizando principalmente React e TailwindCSS, com foco em navegação fluida, experiência do usuário e adaptação para diferentes dispositivos. O objetivo é centralizar e organizar informações profissionais, projetos e links relevantes em uma única plataforma.  
+Este projeto consiste no desenvolvimento de um portfólio profissional responsivo para apresentação de experiência profissional, habilidades técnicas, projetos e informações de contato. A aplicação foi desenvolvida como uma página única (Single Page Application - SPA) utilizando principalmente React, Vite e Tailwind CSS, com foco em navegação fluida, experiência do usuário e adaptação para diferentes dispositivos. O objetivo é centralizar e organizar informações profissionais, projetos e links relevantes em uma única plataforma.  
 O site pode ser acessado clicando [aqui](https://portfolio-luis-felipe-porto.vercel.app/#contact).
 
 ## 🎯 Objetivo
@@ -94,14 +94,15 @@ portfolio/
 │
 ├── package.json
 ├── vite.config.js
-└── README.md
+├── README.md
+└── README_English.md
 ```
 
 ## Desktop x Mobile
 ![Desktop & Mobile mockup](https://github.com/user-attachments/assets/f077775a-0bf2-4b4d-a468-b8a7719de5a7)
 
 ## Deploy
-A aplicação está hospedada na Vercel e integrada ao GitHub para deploy contínuo.
+A aplicação está hospedada na `Vercel` e integrada ao GitHub para deploy contínuo.
 
 Fluxo de atualização:
 1. Alterações enviadas para o repositório GitHub;
@@ -117,5 +118,8 @@ Algumas funcionalidades que poderão ser incorporadas em versões futuras inclue
 ## Créditos
 Este projeto foi inspirado em um template de portfólio open source desenvolvido por Pedro Machado.  
 O projeto original serviu como base para a estrutura inicial e parte do design da aplicação. A partir dessa base, foram realizadas diversas adaptações, personalizações e implementações adicionais para adequar o portfólio aos objetivos profissionais e ao conteúdo apresentado.  
-GitHub: https://github.com/machadop1407/beautiful-react-tailwind-portfolio  
-Autor: Pedro Machado (https://github.com/machadop1407)  
+* GitHub: https://github.com/machadop1407/beautiful-react-tailwind-portfolio  
+* Autor: Pedro Machado (https://github.com/machadop1407)  
+
+## Tags
+`#DataAnalytics` `#BusinessIntelligence` `#DataEngineering` `#Portfolio` `#ReactJS` `#Vite` `#TailwindCSS` `#PowerBI` `#Python` `#SQL` `#GitHub` `#WebDevelopment` `#DataProjects` `#Analytics` `#Dashboard` `#Portfólio` `#AnáliseDeDados` `#EngenhariaDeDados` `#BusinessIntelligence` `#PowerBI` `#Python` `#SQL`

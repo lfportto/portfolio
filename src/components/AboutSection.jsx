@@ -139,8 +139,8 @@ export const AboutSection = () => {
 
                 <br /><br />
 
-                Currently in the final semester of my degree in Industrial
-                Production Management at Fatec, I combine a strong operations and
+                With a degree in Industrial Production Management Technology from 
+                Fatec São José dos Campos, I combine a strong operations and
                 process-improvement background with data analytics, automation and
                 business intelligence. This multidisciplinary perspective allows
                 me to understand both the business side and the technical side of
